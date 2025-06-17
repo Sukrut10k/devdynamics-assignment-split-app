@@ -113,11 +113,6 @@ Start the development server:
 flask run
 ```
 
-For production:
-```bash
-gunicorn app:app
-```
-
 The API will be available at `http://localhost:5000`
 
 ### Environment Variables
@@ -191,26 +186,6 @@ The project includes comprehensive tests:
    - Edge cases
 
 3. For manual testing, import the provided Postman collection.
-
-## Deployment
-
-### Heroku
-1. Create a new Heroku app
-2. Set config vars from your `.env` file
-3. Push your code:
-   ```bash
-   git push heroku main
-   ```
-
-### Docker
-1. Build the image:
-   ```bash
-   docker build -t split-app-backend .
-   ```
-2. Run the container:
-   ```bash
-   docker run -p 5000:5000 --env-file .env split-app-backend
-   ```
 
 ## Contributing
 
