@@ -1,0 +1,390 @@
+{
+  "info": {
+    "name": "Split App - Expense Splitter APIs",
+    "description": "Backend system for splitting expenses fairly among groups of people. Includes expense management, settlement calculations, and balance tracking.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check API health and database connectivity"
+      }
+    },
+    {
+      "name": "API Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        },
+        "description": "Get API welcome message and available endpoints"
+      }
+    },
+    {
+      "name": "Expense Management",
+      "item": [
+        {
+          "name": "Add Expense - Dinner (₹600, paid by Shantanu)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 600,\n  \"description\": \"Dinner at restaurant\",\n  \"paid_by\": \"Shantanu\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Add dinner expense paid by Shantanu"
+          }
+        },
+        {
+          "name": "Add Expense - Groceries (₹450, paid by Sanket)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 450,\n  \"description\": \"Groceries\",\n  \"paid_by\": \"Sanket\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Add groceries expense paid by Sanket"
+          }
+        },
+        {
+          "name": "Add Expense - Petrol (₹300, paid by Om)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 300,\n  \"description\": \"Petrol\",\n  \"paid_by\": \"Om\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Add petrol expense paid by Om"
+          }
+        },
+        {
+          "name": "Add Expense - Movie Tickets (₹500, paid by Shantanu)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 500,\n  \"description\": \"Movie Tickets\",\n  \"paid_by\": \"Shantanu\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Add movie tickets expense paid by Shantanu"
+          }
+        },
+        {
+          "name": "Add Expense - Pizza (₹280, paid by Sanket)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 280,\n  \"description\": \"Pizza\",\n  \"paid_by\": \"Sanket\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Add pizza expense paid by Sanket"
+          }
+        },
+        {
+          "name": "List All Expenses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Get all expenses with complete details"
+          }
+        },
+        {
+          "name": "Update Expense - Change Petrol to ₹350",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 350,\n  \"description\": \"Petrol (Updated)\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses/EXPENSE_ID_HERE",
+              "host": ["{{base_url}}"],
+              "path": ["expenses", "EXPENSE_ID_HERE"]
+            },
+            "description": "Update petrol expense amount to ₹350. Replace EXPENSE_ID_HERE with actual expense ID from previous responses."
+          }
+        },
+        {
+          "name": "Delete Expense - Remove Pizza",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses/EXPENSE_ID_HERE",
+              "host": ["{{base_url}}"],
+              "path": ["expenses", "EXPENSE_ID_HERE"]
+            },
+            "description": "Delete pizza expense. Replace EXPENSE_ID_HERE with actual expense ID from previous responses."
+          }
+        }
+      ],
+      "description": "Expense CRUD operations"
+    },
+    {
+      "name": "Settlements & People",
+      "item": [
+        {
+          "name": "Get All People (should show: Shantanu, Sanket, Om)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/people",
+              "host": ["{{base_url}}"],
+              "path": ["people"]
+            },
+            "description": "List all people derived from expenses"
+          }
+        },
+        {
+          "name": "Get Current Balances (after all transactions)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/balances",
+              "host": ["{{base_url}}"],
+              "path": ["balances"]
+            },
+            "description": "Show each person's balance - how much they paid vs owes vs net"
+          }
+        },
+        {
+          "name": "Get Settlement Summary (optimized transactions)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/settlements",
+              "host": ["{{base_url}}"],
+              "path": ["settlements"]
+            },
+            "description": "Get simplified settlements showing who should pay whom and how much"
+          }
+        }
+      ],
+      "description": "Settlement calculations and people management"
+    },
+    {
+      "name": "Edge Cases & Validation",
+      "item": [
+        {
+          "name": "Add Expense - Invalid (negative amount)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": -100,\n  \"description\": \"Invalid negative amount\",\n  \"paid_by\": \"Test\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Test validation for negative amounts - should return 400 error"
+          }
+        },
+        {
+          "name": "Add Expense - Invalid (empty description)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 100,\n  \"description\": \"\",\n  \"paid_by\": \"Test\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Test validation for empty description - should return 400 error"
+          }
+        },
+        {
+          "name": "Add Expense - Invalid (missing paid_by)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 100,\n  \"description\": \"Test expense\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses",
+              "host": ["{{base_url}}"],
+              "path": ["expenses"]
+            },
+            "description": "Test validation for missing paid_by field - should return 400 error"
+          }
+        },
+        {
+          "name": "Update Non-existent Expense",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 200,\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/expenses/507f1f77bcf86cd799439011",
+              "host": ["{{base_url}}"],
+              "path": ["expenses", "507f1f77bcf86cd799439011"]
+            },
+            "description": "Test updating non-existent expense - should return 404 error"
+          }
+        },
+        {
+          "name": "Delete Non-existent Expense",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/expenses/507f1f77bcf86cd799439011",
+              "host": ["{{base_url}}"],
+              "path": ["expenses", "507f1f77bcf86cd799439011"]
+            },
+            "description": "Test deleting non-existent expense - should return 404 error"
+          }
+        },
+        {
+          "name": "Get Balances - With No Expenses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/balances",
+              "host": ["{{base_url}}"],
+              "path": ["balances"]
+            },
+            "description": "Test getting balances when no expenses exist (run after clearing data)"
+          }
+        }
+      ],
+      "description": "Error handling and edge case testing"
+    },
+    {
+      "name": "Utility",
+      "item": [
+        {
+          "name": "Clear All Data (for testing)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/clear-data",
+              "host": ["{{base_url}}"],
+              "path": ["clear-data"]
+            },
+            "description": "Clear all expenses from database (use for testing fresh scenarios)"
+          }
+        }
+      ],
+      "description": "Utility endpoints for testing"
+    }
+  ]
+}
