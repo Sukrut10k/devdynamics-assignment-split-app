@@ -3,7 +3,7 @@ import json
 import time
 from datetime import datetime
 
-# Base URL - Update this with your deployed URL
+# Base URL - Update this with deployed URL
 BASE_URL = "http://localhost:5000"
 
 class Colors:
