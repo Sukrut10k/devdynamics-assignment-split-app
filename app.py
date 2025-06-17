@@ -16,7 +16,7 @@ app = Flask(__name__)
 # MongoDB Configuration
 MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
-    print("❌ Error: MONGO_URI not found in environment variables")
+    print("Error: MONGO_URI not found in environment variables")
     print("Please check your .env file and make sure MONGO_URI is set")
     exit(1)
 
@@ -33,22 +33,22 @@ try:
     
     # Test the connection
     db.command('ping')
-    print("✅ MongoDB Atlas connected successfully!")
+    print("MongoDB Atlas connected successfully!")
     
     # Create index for better performance (optional)
     try:
         db.expenses.create_index([("created_at", -1)])
         db.expenses.create_index([("paid_by", 1)])
-        print("✅ Database indexes created")
+        print("Database indexes created")
     except Exception as e:
-        print(f"⚠️  Index creation warning: {e}")
+        print(f"Index creation warning: {e}")
         
 except pymongo.errors.ConfigurationError as e:
-    print(f"❌ MongoDB configuration error: {e}")
+    print(f"MongoDB configuration error: {e}")
     print("Please check your MONGO_URI format")
     exit(1)
 except pymongo.errors.ConnectionFailure as e:
-    print(f"❌ MongoDB connection failed: {e}")
+    print(f"MongoDB connection failed: {e}")
     print("Please check:")
     print("1. Your internet connection")
     print("2. MongoDB Atlas cluster is running")
@@ -56,7 +56,7 @@ except pymongo.errors.ConnectionFailure as e:
     print("4. Username and password are correct")
     exit(1)
 except Exception as e:
-    print(f"❌ Unexpected error connecting to MongoDB: {e}")
+    print(f"Unexpected error connecting to MongoDB: {e}")
     exit(1)
 
 # Helper function to serialize MongoDB documents
@@ -569,7 +569,7 @@ def get_balances():
                 'message': 'No expenses found'
             }), 200
         
-        # Calculate balances with enhanced logic
+        # Calculate balances
         balances = {}
         total_amount = 0
         
@@ -693,10 +693,10 @@ def internal_error(error):
     }), 500
 
 if __name__ == '__main__':
-    print(f"🚀 Starting Enhanced Split App API server...")
-    print(f"📊 Database: MongoDB Atlas")
-    print(f"🌐 Environment: {os.getenv('FLASK_ENV', 'development')}")
-    print(f"✨ Features: Equal/Percentage/Exact/Shares splitting")
+    print(f"Starting Enhanced Split App API server...")
+    print(f"Database: MongoDB Atlas")
+    print(f"Environment: {os.getenv('FLASK_ENV', 'development')}")
+    print(f"Features: Equal/Percentage/Exact/Shares splitting")
     
     # Get port from environment variable for deployment
     port = int(os.environ.get('PORT', 5000))
